@@ -37,18 +37,18 @@ done
 ```
 net1="VM Network"
 ds1="[datastore1]"
-hprefix=xyz
+hpre=xyz
 action="-A create"
 
-python pySimpleVmCtrl.py -g ${hprefix}-stage 	--mem 4096 	--cpu 2 --disk 24 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred} 
-python pySimpleVmCtrl.py -g ${hprefix}-file 	--mem 4096 	--cpu 2 --disk 96 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
-python pySimpleVmCtrl.py -g ${hprefix}-db   	--mem 8192 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
+python pySimpleVmCtrl.py -g ${hpre}-stage 	--mem 4096 	--cpu 2 --disk 24 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred} 
+python pySimpleVmCtrl.py -g ${hpre}-file 	--mem 4096 	--cpu 2 --disk 96 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
+python pySimpleVmCtrl.py -g ${hpre}-db   	--mem 8192 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
 
-hpostfix=01
-python pySimpleVmCtrl.py -g ${hprefix}-web-${hpostfix} 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
-python pySimpleVmCtrl.py -g ${hprefix}-proxy-${hpostfix} --mem 1024 	--cpu 1 --disk 4 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
-python pySimpleVmCtrl.py -g ${hprefix}-web-${hpostfix} 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
-python pySimpleVmCtrl.py -g ${hprefix}-cf-${hpostfix} 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
+hpst=01
+python pySimpleVmCtrl.py -g ${hpre}-web-${hpst} 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
+python pySimpleVmCtrl.py -g ${hpre}-proxy-${hpst} --mem 1024 	--cpu 1 --disk 4 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
+python pySimpleVmCtrl.py -g ${hpre}-web-${hpst} 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
+python pySimpleVmCtrl.py -g ${hpre}-cf-${hpst} 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
 ```
 ## dangerous
 ```
