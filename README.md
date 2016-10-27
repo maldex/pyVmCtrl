@@ -46,7 +46,7 @@ python pySimpleVmCtrl.py -g ${hpre}-db   	--mem 8192 	--cpu 2 --disk 8 	--store 
 
 hpst=01
 python pySimpleVmCtrl.py -g ${hpre}-web-${hpst} 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
-python pySimpleVmCtrl.py -g ${hpre}-proxy-${hpst} --mem 1024 	--cpu 1 --disk 4 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
+python pySimpleVmCtrl.py -g ${hpre}-proxy-${hpst} 	--mem 1024 	--cpu 1 --disk 4 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
 python pySimpleVmCtrl.py -g ${hpre}-web-${hpst} 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
 python pySimpleVmCtrl.py -g ${hpre}-cf-${hpst} 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
 ```
