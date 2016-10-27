@@ -11,7 +11,7 @@ Note: Windows / Python 2.7.xxx.msi installations: pip.exe is in C:\Python27\Scri
 
 ## examples
 ```
-# list avalable datastores and networks and guests on physical host 192.168.1.2
+# list available datastores and networks and guests on physical host 192.168.1.2
 pySimpleVmCtrl.py -H 192.168.1.2 -U root -P password -A list-host -A list-guest
 
 # create a guest called test-01
@@ -44,10 +44,11 @@ python pySimpleVmCtrl.py -g ${hprefix}-stage 	--mem 4096 	--cpu 2 --disk 24 	--s
 python pySimpleVmCtrl.py -g ${hprefix}-file 	--mem 4096 	--cpu 2 --disk 96 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
 python pySimpleVmCtrl.py -g ${hprefix}-db   	--mem 8192 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
 
-python pySimpleVmCtrl.py -g ${hprefix}-web-01 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
-python pySimpleVmCtrl.py -g ${hprefix}-proxy-01 --mem 1024 	--cpu 1 --disk 4 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
-python pySimpleVmCtrl.py -g ${hprefix}-web-01 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
-python pySimpleVmCtrl.py -g ${hprefix}-cf-01 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
+hpostfix=01
+python pySimpleVmCtrl.py -g ${hprefix}-web-${hpostfix} 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
+python pySimpleVmCtrl.py -g ${hprefix}-proxy-${hpostfix} --mem 1024 	--cpu 1 --disk 4 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
+python pySimpleVmCtrl.py -g ${hprefix}-web-${hpostfix} 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
+python pySimpleVmCtrl.py -g ${hprefix}-cf-${hpostfix} 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
 ```
 ## dangerous
 ```
