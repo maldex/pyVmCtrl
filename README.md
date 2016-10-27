@@ -1,6 +1,6 @@
 # Automated VMware ESX and ESXi Guest VM creation 
 ## about
-When superceeding the 3-tier-localhost (Web/App/Database on same Linux) architecture, you suddently have quite a lot Hosts to manage, and it'd be nice to have automated creation possibilities at the Machine level like creating n-webservers. 
+When superceeding the 3-tier-localhost (Web/App/Database on same Linux, LAMP) architecture, you suddently have quite a lot Hosts to manage, and it'd be nice to have automated creation possibilities at the Machine level like creating n-webservers. 
 
 This scripts allowes very basic operations of Guest-VMs on a ESX(i) Host (5.5?) like creating or deleting Virtual Machine Guests. See --help for more information.
 
@@ -42,7 +42,7 @@ action="-A create"
 
 python pySimpleVmCtrl.py -g ${hprefix}-stage 	--mem 4096 	--cpu 2 --disk 24 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred} 
 python pySimpleVmCtrl.py -g ${hprefix}-file 	--mem 4096 	--cpu 2 --disk 96 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
-python pySimpleVmCtrl.py -g ${hprefix}-db 	--mem 8192 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
+python pySimpleVmCtrl.py -g ${hprefix}-db   	--mem 8192 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
 
 python pySimpleVmCtrl.py -g ${hprefix}-web-01 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
 python pySimpleVmCtrl.py -g ${hprefix}-proxy-01 --mem 1024 	--cpu 1 --disk 4 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
