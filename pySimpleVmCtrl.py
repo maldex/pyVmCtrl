@@ -15,12 +15,12 @@ from pySimpleVmCtrl.ESXiGuest import *
 program_description = '''  Simple script to create/delete/list VMware ESXi (5.5) guests
 
 examples:
-# list avalable datastores and networks and guests on ESXi host 192.168.1.2
+# list available datastores and networks and guests on ESXi host 192.168.1.2
 python ./pySimpleVmCtrl.py -H 192.168.1.2 -U root -P password -A list-host -A list-guest
 
 # create a guest called test-01
 python ./pySimpleVmCtrl.py -H 192.168.1.2 -U root -P password -A create \
-    --disk 40 --store "MainDS" --cpu 2 --mem 4096 --net LAN -g test-01
+    --disk 40 --store "[MainDS]" --cpu 2 --mem 4096 --net LAN -g test-01
 
 # power on guest test-01
 python ./pySimpleVmCtrl.py -v -H 192.168.1.2 -U root -P password -A on -g test-01
