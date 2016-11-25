@@ -24,7 +24,7 @@ pySimpleVmCtrl.py -v -H 192.168.1.2 7 -U root -P password -g test-01 -A on
 
 ## fun
 ```
-host_cred="-H 192.168.122.232 -U root -P password"
+host_cred="-H 192.168.122.21 -U root -P password"
 
 for i in `seq 1 8`; do
     python pySimpleVmCtrl.py ${host_cred} -A del -g test-${i} 2> /dev/null
@@ -35,9 +35,9 @@ done
 
 ## serious
 ```
-net1="VM Network"
-ds1="[datastore1]"
-hpre=xyz
+net1="LAN"
+ds1="[1GbSlowStore]"
+hpre=dev
 action="-A create"
 
 python pySimpleVmCtrl.py -g ${hpre}-stage 	--mem 4096 	--cpu 2 --disk 24 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred} 

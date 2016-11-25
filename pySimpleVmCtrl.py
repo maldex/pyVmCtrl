@@ -181,5 +181,3 @@ if __name__ == "__main__":      # here we actually go and run
 
     for each_action in argparser.action:
         exec_n_report(each_action, argparser)
-
-
