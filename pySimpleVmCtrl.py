@@ -73,7 +73,7 @@ parser.add_argument('--net', action='store', default=None,
 
 parser.add_argument('--disk', action='store', default=8,
                     dest='disksize',
-                    help='(create) disksize in GB')
+                    help='(create) disksize in GB [%(default)s]')
 
 parser.add_argument('--cpu', action='store', default="1",
                     dest='cpu',
