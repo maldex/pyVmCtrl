@@ -8,7 +8,7 @@ So far tested and working against ESXi 5.1, 5.5 and 6.5. With vCenter, you still
 ## requirements
 Python(2.7isch) and PySphere (```pip install pysphere```) 
 
-Note: Windows / Python 2.7.xxx.msi installations: pip.exe is in C:\Python27\Scripts
+Note: [Windows](https://www.python.org/downloads/release) / _Python 2.7.xxx.msi_ installations: _pip.exe_ is in ```C:\Python27\Scripts```
 
 ## --help
 [some more samples](SAMPLE.md)
