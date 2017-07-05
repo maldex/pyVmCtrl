@@ -1,7 +1,7 @@
 # cli-tool for VMware ESXi Guest VM creation and removal
 ## about
 
-This scripts allowes very basic operations of Guest-VMs on a ESXi like creating or deleting Virtual Machine Guests thorugh a simple shell-command. It exposes a simplfied interface to python's [pysphere](https://pypi.python.org/pypi/pysphere) module. 
+This scripts allowes very basic operations of Guest-VMs on a ESXi like creating or deleting Virtual Machine Guests through a simple shell-command. It exposes a simplfied interface to python's [pysphere](https://pypi.python.org/pypi/pysphere) module. 
 
 So far tested and working against ESXi 5.1, 5.5 and 6.5. With vCenter, you still need to target the actual host, not the vcenter.
 
