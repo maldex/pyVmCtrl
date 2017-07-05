@@ -12,7 +12,7 @@ from pySimpleVmCtrl.ESXiGuest import *
 
 ############################
 
-program_description = '''  Simple script to create/delete/list VMware ESXi (5.5) guests
+program_description = '''  Simple script to create/delete/list VMware ESXi guests
 
 examples:
 # list available datastores and networks and guests on ESXi host 192.168.1.2
@@ -33,6 +33,7 @@ Warn:
     MULTIPLE GVMs/Guests can be created using the SAME name!!!
     Use '-A create' carefully, if you specify a already existing guest, a new, same-named
     guest will be created despite the original one, and you'll eventually confuse yourself!
+    # todo: test which vm will be deleted?
 
 Arguments:
 '''
