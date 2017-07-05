@@ -6,7 +6,7 @@ This scripts allowes very basic operations of Guest-VMs on a ESXi like creating 
 So far tested and working against ESXi 5.1, 5.5 and 6.5. With vCenter, you still need to target the actual host, not the vcenter.
 
 ## requirements
-Python(2.7isch) and PySphere (pip install pysphere) 
+Python(2.7isch) and PySphere (```pip install pysphere```) 
 
 Note: Windows / Python 2.7.xxx.msi installations: pip.exe is in C:\Python27\Scripts
 
