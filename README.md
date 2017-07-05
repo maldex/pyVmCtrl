@@ -1,7 +1,9 @@
 # Automated VMware ESX and ESXi Guest VM creation 
 ## about
 
-This scripts allowes very basic operations of Guest-VMs on a ESX(i) Host (5.5?) like creating or deleting Virtual Machine Guests. See --help for more information.
+This scripts allowes very basic operations of Guest-VMs on a ESXi like creating or deleting Virtual Machine Guests thorugh a simple shell-command. It exposes a simplfied interface to python's [pysphere](https://pypi.python.org/pypi/pysphere) module. 
+
+So far tested and working against ESXi 5.1, 5.5 and 6.5. With vCenter, you still need to target the actual host, not the vcenter.
 
 ## requirements
 Python(2.7isch) and PySphere (pip install pysphere) 
@@ -21,49 +23,49 @@ pySimpleVmCtrl.py -H 192.168.1.2 -U root -P password -A create -g test-01 \
 pySimpleVmCtrl.py -v -H 192.168.1.2 7 -U root -P password -g test-01 -A on 
 ```
 
-## fun
-```
-host_cred="-H 192.168.122.21 -U root -P password"
+## --help
+[some more samples](SAMPLE.md)
+```$ python ./pySimpleVmCtrl.py --help
+usage: pySimpleVmCtrl.py [-h] [-v] [-H HOST] [-U USER] [-P PASSWD] [-A ACTION]
+                         [-g GUEST] [--store DATASTORE] [--net NETWORK]
+                         [--disk DISKSIZE] [--cpu CPU] [--mem MEMORY]
+                         [--os OPERATINGSYSTEM]
 
-for i in `seq 1 8`; do
-    python pySimpleVmCtrl.py ${host_cred} -A del -g test-${i} 2> /dev/null
-    python pySimpleVmCtrl.py -v ${host_cred} -A create -g test-${i} \
-       --disk ${i}  --cpu ${i} --mem $((${i} * 16))
-done
-```
+  Simple script to create/delete/list VMware ESXi guests
 
-## serious
-```
-net1="LAN"
-ds1="[1GbSlowStore]"
-hpre=dev
-action="-A create"
+examples:
+# list available datastores and networks and guests on ESXi host 192.168.1.2
+python ./pySimpleVmCtrl.py -H 192.168.1.2 -U root -P password -A list-host -A list-guest
 
-python pySimpleVmCtrl.py -g ${hpre}-stage 	--mem 4096 	--cpu 2 --disk 24 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred} 
-python pySimpleVmCtrl.py -g ${hpre}-file 	--mem 4096 	--cpu 2 --disk 96 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
-python pySimpleVmCtrl.py -g ${hpre}-db   	--mem 8192 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
+# create a guest called test-01
+python ./pySimpleVmCtrl.py -H 192.168.1.2 -U root -P password -A create     --disk 40 --store "[MainDS]" --cpu 2 --mem 4096 --net LAN -g test-01
 
-hpst=01
-python pySimpleVmCtrl.py -g ${hpre}-proxy-${hpst} 	--mem 1024 	--cpu 1 --disk 4 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
-python pySimpleVmCtrl.py -g ${hpre}-php-${hpst} 	--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
-python pySimpleVmCtrl.py -g ${hpre}-cf-${hpst} 		--mem 4096 	--cpu 2 --disk 8 	--store "${ds1}" --net "${net1}"  ${action}  ${host_cred}
-```
-## dangerous
-```
-# BIG FAT WARNING: THIS WILL JUST DELETE/WIPE/EMPTY YOUR HOST!!! ALL GUESTS WILL BE GONE!!!
-# any you probabely shouldn't do things this way anyway!
+# power on guest test-01
+python ./pySimpleVmCtrl.py -v -H 192.168.1.2 -U root -P password -A on -g test-01
 
-# create ListOfVirtualMachines (lovm) - get list of all Guests on the very host
-lovm=`python pySimpleVmCtrl.py ${host_cred} -A list-guest | awk '{if(NR>1)print $1}'`
+Note:
+    -A  can be specified multiple times to run several operations on the same VM
+        (e.g.  -A off -A del -A create -A on :)
 
-# print them out again
-echo "@@@@@@@@@@@@@@ WILL REMOVE THE FOLLOWING GUESTS/VMS @@@@@@@@@@@@@@"
-echo ${lovm}
-echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+Warn:
+    Use '-A create' carefully, if you specify a already existing guest, a new, same-named
+    guest will be created despite the original one, and you'll eventually confuse yourself!
+    # todo: test which vm will be deleted if two same-named vm exist?
 
-# loop and remove
-for vm in ${lovm}; do
-	echo "---------------------- REMOVING GUEST '${vm}'  ----------------------"
-	python pySimpleVmCtrl.py ${host_cred} -A del -g ${vm}
-done
+Arguments:
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v                    be verbose [False]
+  -H HOST               hostname esxi server [localhost]
+  -U USER               username to connect to esx [root]
+  -P PASSWD             password [read from stdin]
+  -A ACTION             what to do [list-host|list-guest|off|on|reboot|del|create]
+  -g GUEST              Guest virtual machine name
+  --store DATASTORE     (create) datastore to use
+  --net NETWORK         (create) network to connect to
+  --disk DISKSIZE       (create) disksize in GB [8]
+  --cpu CPU             (create) cpu count [1]
+  --mem MEMORY          (create) memory in MB [1024]
+  --os OPERATINGSYSTEM  (create) Operating system [rhel6_64Guest]
 ```
