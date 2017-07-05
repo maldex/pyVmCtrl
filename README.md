@@ -10,19 +10,6 @@ Python(2.7isch) and PySphere (pip install pysphere)
 
 Note: Windows / Python 2.7.xxx.msi installations: pip.exe is in C:\Python27\Scripts
 
-## examples
-```
-# list available datastores and networks and guests on physical host 192.168.1.2
-pySimpleVmCtrl.py -H 192.168.1.2 -U root -P password -A list-host -A list-guest
-
-# create a guest called test-01
-pySimpleVmCtrl.py -H 192.168.1.2 -U root -P password -A create -g test-01 \
-       --disk 40 --store "[SomeDataStore]" --cpu 2 --mem 4096 --net LAN	
-
-# power on guest test-01
-pySimpleVmCtrl.py -v -H 192.168.1.2 7 -U root -P password -g test-01 -A on 
-```
-
 ## --help
 [some more samples](SAMPLE.md)
 ```$ python ./pySimpleVmCtrl.py --help
